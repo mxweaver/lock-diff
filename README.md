@@ -212,7 +212,7 @@ uri-js removed
 ### `--format=table`
 
 ```
-> lock-diff data/lodash.4-17-11.package-lock.json data/lodash.4-17-15.package-lock.json --format=json
+> lock-diff data/lodash.4-17-11.package-lock.json data/lodash.4-17-15.package-lock.json --format=table
 ╔══════════════════════╤═════════════╤═════════════╗
 ║ package              │ old version │ new version ║
 ╟──────────────────────┼─────────────┼─────────────╢
