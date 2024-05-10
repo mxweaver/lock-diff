@@ -2,3 +2,4 @@ data
 __tests__
 .eslintrc.json
 .semaphore
+.vscode

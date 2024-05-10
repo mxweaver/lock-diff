@@ -13,7 +13,8 @@
   "scripts": {
     "start": "./bin/lock-diff.js",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "dependencies": {
     "chalk": "^3.0.0",

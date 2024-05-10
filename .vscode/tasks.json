@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+			"label": "Run Unit Tests",
+			"detail": "Runs all unit tests.",
+      "type": "npm",
+      "script": "test"
+    },
+		{
+			"label": "Watch Unit Tests",
+			"detail": "Watches all unit tests.",
+      "type": "npm",
+      "script": "test:watch"
+    }
+  ]
+}
