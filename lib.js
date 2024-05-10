@@ -3,7 +3,6 @@ const { green, red, bold } = chalk;
 import { eq, gt, valid, lt } from 'semver';
 import { table } from 'table';
 
-
 export function diff(oldLock, newLock) {
   const changes = {};
 
