@@ -1,5 +1,6 @@
 data
 __tests__
 .eslintrc.json
+.github
 .semaphore
 .vscode
