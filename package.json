@@ -12,8 +12,8 @@
   "license": "MIT",
   "scripts": {
     "start": "./bin/lock-diff.js",
-    "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "chalk": "^3.0.0",
@@ -22,6 +22,6 @@
     "table": "^5.4.6"
   },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "vitest": "^1.6.0"
   }
 }
