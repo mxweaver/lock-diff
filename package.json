@@ -4,11 +4,11 @@
   "description": "a diff for package-lock.json files",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mayavera/lock-diff.git"
+    "url": "git@github.com:mxweaver/lock-diff.git"
   },
   "bin": "./bin/lock-diff.js",
   "main": "lib/index.js",
-  "author": "Maya Vera <maya@mayavera.me> (https://mayavera.me/)",
+  "author": "Madison Weaver <madisonxweaver@gmail.com> (https://madisonweaver.com/)",
   "license": "MIT",
   "scripts": {
     "start": "./bin/lock-diff.js",
