@@ -6,12 +6,13 @@
     "type": "git",
     "url": "git@github.com:mxweaver/lock-diff.git"
   },
-  "bin": "./bin/lock-diff.js",
-  "main": "lib/index.js",
+  "bin": "main.js",
+  "main": "main.js",
+  "type": "module",
   "author": "Madison Weaver <madisonxweaver@gmail.com> (https://madisonweaver.com/)",
   "license": "MIT",
   "scripts": {
-    "start": "./bin/lock-diff.js",
+    "start": "./main.js",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },

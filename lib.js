@@ -1,8 +1,10 @@
-const chalk = require('chalk');
-const semver = require('semver');
-const { table } = require('table');
+import chalk from 'chalk';
+const { green, red, bold } = chalk;
+import { eq, gt, valid, lt } from 'semver';
+import { table } from 'table';
 
-function diff(oldLock, newLock) {
+
+export function diff(oldLock, newLock) {
   const changes = {};
 
   Object.entries(oldLock.dependencies).forEach(([name, { version }]) => {
@@ -11,7 +13,7 @@ function diff(oldLock, newLock) {
 
   Object.entries(newLock.dependencies).forEach(([name, { version }]) => {
     if (changes[name]) {
-      if (semver.eq(changes[name][0], version)) {
+      if (eq(changes[name][0], version)) {
         delete changes[name];
       } else {
         changes[name] = [changes[name][0], version];
@@ -24,7 +26,7 @@ function diff(oldLock, newLock) {
   return changes;
 }
 
-function printJSON(changes, options) {
+export function printJSON(changes, options) {
   if (options.pretty) {
     console.log(JSON.stringify(changes, null, 2));
   } else {
@@ -32,25 +34,25 @@ function printJSON(changes, options) {
   }
 }
 
-function printText(changes, options) {
+export function printText(changes, options) {
   Object.entries(changes).forEach(([name, [oldVersion, newVersion]]) => {
     if (!oldVersion) {
       if (options.color) {
-        console.log(`${name} ${chalk.green('added')}`);
+        console.log(`${name} ${green('added')}`);
       } else {
         console.log(`${name} added`);
       }
     } else if (!newVersion) {
       if (options.color) {
-        console.log(`${name} ${chalk.red('removed')}`);
+        console.log(`${name} ${red('removed')}`);
       } else {
         console.log(`${name} removed`);
       }
-    } else if (!semver.eq(oldVersion, newVersion)) {
+    } else if (!eq(oldVersion, newVersion)) {
       if (options.color) {
-        const color = semver.gt(oldVersion, newVersion)
-          ? chalk.red
-          : chalk.green;
+        const color = gt(oldVersion, newVersion)
+          ? red
+          : green;
         console.log(`${name} ${color(`${oldVersion} -> ${newVersion}`)}`);
       } else {
         console.log(`${name} ${oldVersion} -> ${newVersion}`);
@@ -59,7 +61,7 @@ function printText(changes, options) {
   });
 }
 
-function printTable(changes, options) {
+export function printTable(changes, options) {
   let data = Object.entries(changes)
     .map(([name, [oldVersion, newVersion]]) => ([
       name,
@@ -69,13 +71,13 @@ function printTable(changes, options) {
 
   if (options.color) {
     data = data.map(([name, oldVersion, newVersion]) => {
-      if (semver.valid(oldVersion) && semver.valid(newVersion)) {
-        if (semver.lt(oldVersion, newVersion)) {
-          oldVersion = chalk.red(oldVersion);
-          newVersion = chalk.green(newVersion);
-        } else if (semver.gt(oldVersion, newVersion)) {
-          oldVersion = chalk.green(oldVersion);
-          newVersion = chalk.red(newVersion);
+      if (valid(oldVersion) && valid(newVersion)) {
+        if (lt(oldVersion, newVersion)) {
+          oldVersion = red(oldVersion);
+          newVersion = green(newVersion);
+        } else if (gt(oldVersion, newVersion)) {
+          oldVersion = green(oldVersion);
+          newVersion = red(newVersion);
         }
       }
 
@@ -86,13 +88,13 @@ function printTable(changes, options) {
   data.unshift(['package', 'old version', 'new version']);
 
   if (options.color) {
-    data[0] = data[0].map((heading) => chalk.bold(heading));
+    data[0] = data[0].map((heading) => bold(heading));
   }
 
   console.log(table(data));
 }
 
-function print(changes, options) {
+export function print(changes, options) {
   switch (options.format) {
     case 'json':
       printJSON(changes, options);
@@ -106,8 +108,3 @@ function print(changes, options) {
       break;
   }
 }
-
-module.exports = {
-  diff,
-  print,
-};

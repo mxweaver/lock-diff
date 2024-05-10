@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-const { diff } = require('../');
+import { diff } from '../';
 
 describe('diff', () => {
   it('returns an empty object when given two empty objects', () => {

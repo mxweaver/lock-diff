@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const commander = require('commander');
-const { diff, print } = require('../lib/index');
+import commander from 'commander';
+import { readFileSync } from 'fs';
+
+import { diff, print } from './lib.js';
 
 commander
-  .version('0.5.0')
+	.version('0.5.0')
   .arguments('<oldPath> <newPath>')
   .option('-f, --format <format>', 'changes the output format', 'text')
   .option('-p, --pretty', 'improves readability of certain output formats', false)
   .option('-c, --color', 'colorizes certain output formats', false)
   .action((oldPath, newPath) => {
-    const oldLock = JSON.parse(fs.readFileSync(oldPath));
-    const newLock = JSON.parse(fs.readFileSync(newPath));
+    const oldLock = JSON.parse(readFileSync(oldPath));
+    const newLock = JSON.parse(readFileSync(newPath));
 
     const changes = diff(oldLock, newLock);
 
