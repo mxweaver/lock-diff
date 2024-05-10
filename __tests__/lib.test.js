@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { diff } from '../';
+import { diff } from '../lib.js';
 
 describe('diff', () => {
   it('returns an empty object when given two empty objects', () => {
